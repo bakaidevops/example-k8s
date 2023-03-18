@@ -10,4 +10,4 @@ jobs:
         env:
           IMAGE_TAG: ${{ github.run_number }}
         run: |
-          echo $IMAGE_TAG
+           echo "The Docker image tag is: $IMAGE_TAG"
