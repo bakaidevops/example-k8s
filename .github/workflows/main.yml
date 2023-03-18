@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up kubectl
-        uses: centosadmin/kubernetes-helm
+        uses: centosadmin/kubernetes-helm:latest
         with:
           version: 'latest'
 
