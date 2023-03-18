@@ -4,9 +4,8 @@ jobs:
   node-docker:
     runs-on: ubuntu-latest
     container:
-      image: node:14.15.0-alpine3.12
+      image: centosadmin/kubernetes-helm:3.6.3
     steps:
-         - name: Log the node version
+         - name: Get pods
            run: |
-             node -v
-             cat /etc/os-release  
+             kubectl get po
