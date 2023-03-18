@@ -1,30 +1,18 @@
 name: Docker Publish
 on: workflow_dispatch
 jobs:
-  build-and-push:
+  check-kubeconfig:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
+      - name: Configure Kubernetes CLI
+        uses: azure/k8s-set-context@v1
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          kubeconfig: ${{ secrets.KUBECONFIG }}
 
-      - name: Build Docker image
-        uses: docker/build-push-action@v2
+      - name: Check kubeconfig
+        uses: azure/k8s-command@v1
         with:
-          context: .
-          dockerfile: Dockerfile
-          tags: frdevelopergen/react-app-nginx:latest
-
-      - name: Push Docker image to Docker Hub
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          dockerfile: Dockerfile
-          push: true
-          tags: frdevelopergen/react-app-nginx:latest
-
+          inline: kubectl get nodes
