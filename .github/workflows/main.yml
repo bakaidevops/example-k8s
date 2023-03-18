@@ -7,7 +7,7 @@ jobs:
       - name: Set up kubectl
         uses: centosadmin/kubernetes-helm
         with:
-          version: '3.6.3'
+          version: 'latest'
 
       - name: Get nodes
         run: |
