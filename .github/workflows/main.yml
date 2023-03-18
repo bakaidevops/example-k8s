@@ -1,18 +1,14 @@
-name: K8s Check
+name: Docker Publish
 on: workflow_dispatch
 jobs:
-  check-kubeconfig:
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Configure Kubernetes CLI
-        uses: azure/k8s-set-context@v1
+      - name: Set up kubectl
+        uses: centosadmin/kubernetes-helm
         with:
-          kubeconfig: ${{ secrets.KUBECONFIG }}
+          version: '3.6.3'
 
-      - name: Check kubeconfig
-        uses: azure/k8s-command@v1
-        with:
-          inline: kubectl get nodes
+      - name: Get nodes
+        run: |
+          kubectl get nodes
