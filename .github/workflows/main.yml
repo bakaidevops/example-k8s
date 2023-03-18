@@ -1,4 +1,4 @@
-name: Docker Publish
+name: K8s Check
 on: workflow_dispatch
 jobs:
   check-kubeconfig:
