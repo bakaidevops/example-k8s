@@ -28,10 +28,4 @@ jobs:
           push: true
           tags: frdevelopergen/react-app-nginx:latest
 
-      - name: Set up kubectl
-        uses: centosadmin/kubernetes-helm:3.6.3
-
-      - name: Get node
-        run: |
-          kubectl get nodes
-      
+    
