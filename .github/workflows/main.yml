@@ -1,16 +1,12 @@
 name: Docker Publish
 on: workflow_dispatch
 jobs:
-  build-and-push:
+  node-docker:
     runs-on: ubuntu-latest
+    container:
+      image: node:14.15.0-alpine3.12
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Get pods
-        uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-        with:
-          args: get pods
-    
+         - name: Log the node version
+           run: |
+             node -v
+             cat /etc/os-release  
