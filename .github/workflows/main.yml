@@ -4,7 +4,7 @@ jobs:
   node-docker:
     runs-on: ubuntu-latest
     container:
-      image: centosadmin/kubernetes-helm:3.6.3
+      image: centosadmin/kubernetes-helm:latest
     steps:
          - name: Get pods
            run: |
