@@ -1,0 +1,94 @@
+# ------ APP FrotEnd Deployment Start --------
+app_name: app
+app_replica: 1
+app_container_label: app
+app_port: 80
+app_container_image: frdevelopergen/react-app-nginx
+app_container_tag: latest
+
+# --- APP Service Start ---
+app_service_name: app-svc
+app_service_port: 80
+app_service_target_port: 80
+# --- APP Service End ---
+
+# ------ APP FrotEnd Deployment End --------
+
+
+
+
+# ------ Landing FrotEnd Deployment Start --------
+landing_name: landing
+landing_replica: 1
+landing_container_label: landing
+landing_port: 80
+landing_container_image: frdevelopergen/react-landing-nginx
+landing_container_tag: 1.0.0
+
+# --- Landing Service Start ---
+landing_service_name: landing-svc
+landing_service_port: 80
+landing_service_target_port: 80
+# --- Landing Service End ---
+
+# ------ Landing FrotEnd Deployment End --------
+
+
+# ------ Admin FrotEnd Deployment Start --------
+admin_name: admin
+admin_replica: 1
+admin_container_label: admin
+admin_port: 80
+admin_container_image: frdevelopergen/react-admin-nginx
+admin_container_tag: 1.0.0
+
+# --- Admin Service Start ---
+admin_service_name: admin-svc
+admin_service_port: 80
+admin_service_target_port: 80
+# --- Admin Service End ---
+
+# ------ Admin FrotEnd Deployment End --------
+
+
+# ------ API FrotEnd Deployment Start --------
+api_name: api
+api_replica: 1
+api_container_label: api
+api_port: 5000
+api_container_image: frdevelopergen/node-expressjs
+api_container_tag: 1.0.0
+
+# --- API Service Start ---
+api_service_name: api-svc
+api_service_port: 5000
+api_service_target_port: 5000
+# --- API Service End ---
+
+# ------ API FrotEnd Deployment End --------
+
+
+# ----- Ingress Start -----
+
+ingress_name: production-ingress
+
+# --- APP Rule Start ----
+app_host: app.bakai.store
+app_path: /
+# --- APP Rule End ----
+
+# --- Admin Rule Start ----
+admin_host: admin.bakai.store
+admin_path: /
+# --- Admin Rule End ----
+
+# --- Landing Rule Start ----
+landing_host: landing.bakai.store
+landing_path: /
+# --- Landing Rule End ----
+
+# --- API Rule Start ----
+api_host: api.bakai.store
+api_path: /
+
+# --- API Rule End ----

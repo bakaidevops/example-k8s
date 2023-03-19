@@ -1,0 +1,48 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.ingress_name }}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: {{ .Values.app_host }}
+    http:
+      paths:
+        - pathType: Prefix
+          backend:
+            service:
+              name: {{ .Values.app_service_name }}
+              port:
+                number: {{ .Values.app_service_port }}
+          path: {{ .Values.app_path }}
+  - host: {{ .Values.admin_host }}
+    http:
+      paths:
+        - pathType: Prefix
+          backend:
+            service:
+              name: {{ .Values.admin_service_name }}
+              port:
+                number: {{ .Values.admin_service_port }}
+          path: {{ .Values.admin_path }}
+  - host: {{ .Values.landing_host }}
+    http:
+      paths:
+        - pathType: Prefix
+          backend:
+            service:
+              name: {{ .Values.landing_service_name }}
+              port:
+                number: {{ .Values.landing_service_port }}
+          path: {{ .Values.landing_path }}
+  - host: {{ .Values.api_host }}
+    http:
+      paths:
+        - pathType: Prefix
+          backend:
+            service:
+              name: {{ .Values.api_service_name }}
+              port:
+                number: {{ .Values.api_service_port }}
+          path: {{ .Values.api_path }}

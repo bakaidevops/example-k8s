@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.landing_name }}
+spec:
+  replicas: {{ .Values.landing_replica }}
+  selector:
+    matchLabels:
+      app: {{ .Values.landing_container_label }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.landing_container_label }}
+    spec:
+      containers:
+      - name: {{ .Values.landing_container_label }}
+        image: "{{ .Values.landing_container_image }}:{{ .Values.landing_container_tag }}"
+        ports:
+        - containerPort: {{ .Values.landing_port }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.landing_service_name }}
+spec:
+  ports:
+  - port: {{ .Values.landing_service_port }}
+    targetPort: {{ .Values.landing_service_target_port }}
+  selector:
+    app: {{ .Values.landing_container_label }}
+  type: ClusterIP
+  

@@ -1,0 +1,4 @@
+apiVersion: v2
+name: example-k8s
+description: A Helm chart for K8S Example
+version: "1.25"

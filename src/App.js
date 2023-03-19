@@ -18,6 +18,7 @@ function App() {
   return (
     <div>
       <h1 className='item' style={{fontSize: '20px'}}>App</h1>
+      <h2>Here new featire check</h2>
       {(typeof backendData.users === "undefined") ? (
         <p className='item'>Loading...</p>
       ) : (
