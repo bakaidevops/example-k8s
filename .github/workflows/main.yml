@@ -1,18 +1,50 @@
-name: Docker Publish
+name: Demo Workflow
 on: workflow_dispatch
 jobs:
-  node-docker:
+  build-and-push:
     runs-on: ubuntu-latest
-    container:
-      image: centosadmin/kubernetes-helm:latest
     steps:
-         - name: Get pods
-           run: |
-                  kubectl config set-cluster k8s --insecure-skip-tls-verify=true --server=$K8S_DEV_API_URL
-                  kubectl config set-credentials ci --token=$K8S_DEV_CI_TOKEN
-                  echo $K8S_DEV_API_URL
-                  echo $K8S_DEV_CI_TOKEN
-                  kubectl config set-context ci --cluster=k8s --user=ci
-                  kubectl config use-context ci
-                  kubectl get po
-                  kubectl get nodes
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          dockerfile: Dockerfile
+          tags: frdevelopergen/react-app-nginx:latest
+
+      - name: Push Docker image to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          dockerfile: Dockerfile
+          push: true
+          tags: frdevelopergen/react-app-nginx:latest
+      
+      - name: Install kubectl 
+        uses: azure/setup-kubectl@v2.0
+        with:
+          version: 'v1.24.0'
+        id: install
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Update kubeconfig 
+        run: aws eks update-kubeconfig --name example-k8s --region us-east-1
+
+      - name: Get pods
+        run: |
+          kubectl get po
+      
