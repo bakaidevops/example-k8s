@@ -46,6 +46,6 @@ jobs:
 
       - name: Get pods
         run: |
-          helm upgrade example-k8s .helm 
+          helm upgrade example-k8s .helm \
                --set image=latest
       
