@@ -22,7 +22,7 @@ jobs:
         with:
           context: .
           dockerfile: Dockerfile
-          tags: frdevelopergen/react-app-nginx:latest
+          tags: frdevelopergen/react-app-nginx:1.1.2
 
       - name: Push Docker image to Docker Hub
         uses: docker/build-push-action@v2
@@ -30,7 +30,7 @@ jobs:
           context: .
           dockerfile: Dockerfile
           push: true
-          tags: frdevelopergen/react-app-nginx:latest
+          tags: frdevelopergen/react-app-nginx:1.1.2
       
       - name: Install kubectl 
         uses: azure/setup-kubectl@v2.0
@@ -51,5 +51,5 @@ jobs:
       - name: Get pods
         run: |
           helm upgrade example-k8s .helm \
-               --set image=latest
+               --set image=1.1.2
       
