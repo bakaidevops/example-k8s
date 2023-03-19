@@ -46,5 +46,5 @@ jobs:
 
       - name: Get pods
         run: |
-          kubectl get po
+          helm help
       
