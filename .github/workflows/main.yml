@@ -57,6 +57,7 @@ jobs:
           helm upgrade example-k8s .helm  --set app_container_tag=${{ env.IMAGE_TAG }}
   deploy:
     runs-on: ubuntu-latest
+    needs: [ build ]
     steps:
       - name: Install kubectl 
         uses: azure/setup-kubectl@v2.0
