@@ -18,7 +18,7 @@ function App() {
   return (
     <div>
       <h1 className='item' style={{fontSize: '20px'}}>APP</h1>
-      <h2 className='item'>Complete DEMO 2 DONE WELL</h2>
+      <h2 className='item'>Complete DEMO 2 DONE WELL DONE</h2>
 
       {(typeof backendData.users === "undefined") ? (
         <p className='item'>Loading...</p>
