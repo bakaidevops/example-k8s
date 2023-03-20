@@ -25,11 +25,8 @@ jobs:
         with:
           context: .
           dockerfile: Dockerfile
-          build-args: |
-            "IMAGE_NAME=$IMAGE_NAME"
-            "IMAGE_TAG=$IMAGE_TAG"
-          tags: $IMAGE_NAME:$IMAGE_TAG
-
+          tags: frdevelopergen/react-app-nginx:$IMAGE_TAG
+          
 
       - name: Push Docker image to Docker Hub
         uses: docker/build-push-action@v2
@@ -37,10 +34,7 @@ jobs:
           context: .
           dockerfile: Dockerfile
           push: true
-          build-args: |
-            "IMAGE_NAME=$IMAGE_NAME"
-            "IMAGE_TAG=$IMAGE_TAG"
-          tags: $IMAGE_NAME:$IMAGE_TAG
+          tags: frdevelopergen/react-app-nginx:$IMAGE_TAG
       
       - name: Install kubectl 
         uses: azure/setup-kubectl@v2.0
