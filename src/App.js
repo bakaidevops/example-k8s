@@ -6,7 +6,7 @@ function App() {
   const [backendData, setBackendData] = useState([{}])
 
   useEffect(() => {
-    fetch("http://api.bakai.store/api").then(
+    fetch("https://api.bakai.store/api").then(
       response => response.json()
     ).then(
       data => {
@@ -17,9 +17,8 @@ function App() {
 
   return (
     <div>
-      <h1 className='item' style={{fontSize: '20px'}}>App</h1>
-      <h2 className='item'>Here new featire check</h2>
-      <h2 className='item'>Second new feature 334</h2>
+      <h1 className='item' style={{fontSize: '20px'}}>APP</h1>
+      <h2 className='item'>Complete DEMO</h2>
 
       {(typeof backendData.users === "undefined") ? (
         <p className='item'>Loading...</p>

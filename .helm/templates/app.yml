@@ -30,5 +30,5 @@ spec:
     targetPort: {{ .Values.app_service_target_port }}
   selector:
     app: {{ .Values.app_container_label }}
-  type: ClusterIP
+  type: NodePort
   

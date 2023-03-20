@@ -4,7 +4,7 @@ app_replica: 1
 app_container_label: app
 app_port: 80
 app_container_image: frdevelopergen/react-app-nginx
-app_container_tag: latest
+app_container_tag: 1.0.0
 
 # --- APP Service Start ---
 app_service_name: app-svc
@@ -23,7 +23,7 @@ landing_replica: 1
 landing_container_label: landing
 landing_port: 80
 landing_container_image: frdevelopergen/react-landing-nginx
-landing_container_tag: 1.0.0
+landing_container_tag: 2
 
 # --- Landing Service Start ---
 landing_service_name: landing-svc
@@ -40,7 +40,7 @@ admin_replica: 1
 admin_container_label: admin
 admin_port: 80
 admin_container_image: frdevelopergen/react-admin-nginx
-admin_container_tag: 1.0.0
+admin_container_tag: 2
 
 # --- Admin Service Start ---
 admin_service_name: admin-svc

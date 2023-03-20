@@ -30,5 +30,5 @@ spec:
     targetPort: {{ .Values.landing_service_target_port }}
   selector:
     app: {{ .Values.landing_container_label }}
-  type: ClusterIP
+  type: NodePort
   

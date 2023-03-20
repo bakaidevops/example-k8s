@@ -1,4 +1,4 @@
-name: Demo Workflow
+name: Demo K8s Workflow
 
 on:
   push:
@@ -7,6 +7,9 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    env:
+      IMAGE_TAG: ${{ github.run_number }}
+      IMAGE_NAME: frdevelopergen/react-app-nginx
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -22,7 +25,7 @@ jobs:
         with:
           context: .
           dockerfile: Dockerfile
-          tags: frdevelopergen/react-app-nginx:1.1.2
+          tags: $IMAGE_NAME:$IMAGE_TAG
 
       - name: Push Docker image to Docker Hub
         uses: docker/build-push-action@v2
@@ -30,7 +33,7 @@ jobs:
           context: .
           dockerfile: Dockerfile
           push: true
-          tags: frdevelopergen/react-app-nginx:1.1.2
+          tags: $IMAGE_NAME:$IMAGE_TAG
       
       - name: Install kubectl 
         uses: azure/setup-kubectl@v2.0
@@ -48,7 +51,7 @@ jobs:
       - name: Update kubeconfig 
         run: aws eks update-kubeconfig --name example-k8s --region us-east-1
 
-      - name: Get pods
+      - name: Upgrade app with new features
         run: |
-          helm upgrade example-k8s .helm  --set app_container_tag=1.1.2
+          helm upgrade example-k8s .helm  --set app_container_tag=$IMAGE_TAG
       
