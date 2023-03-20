@@ -1,5 +1,9 @@
 name: Demo K8s Workflow
 
+env:
+  IMAGE_TAG: ${{ github.sha }}
+
+
 on:
   push:
     branches: [main]
@@ -22,7 +26,7 @@ jobs:
         with:
           context: .
           dockerfile: Dockerfile
-          tags: frdevelopergen/react-app-nginx:2.2
+          tags: frdevelopergen/react-app-nginx:${{ env.IMAGE_TAG }}
           
 
       - name: Push Docker image to Docker Hub
@@ -31,7 +35,7 @@ jobs:
           context: .
           dockerfile: Dockerfile
           push: true
-          tags: frdevelopergen/react-app-nginx:2.2
+          tags: frdevelopergen/react-app-nginx:${{ env.IMAGE_TAG }}
       
       - name: Install kubectl 
         uses: azure/setup-kubectl@v2.0
@@ -51,5 +55,5 @@ jobs:
 
       - name: Upgrade app with new features
         run: |
-          helm upgrade example-k8s .helm  --set app_container_tag=2.2
+          helm upgrade example-k8s .helm  --set app_container_tag=${{ env.IMAGE_TAG }}
       
