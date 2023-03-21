@@ -17,6 +17,8 @@ spec:
         image: "{{ .Values.api_container_image }}:{{ .Values.api_container_tag }}"
         ports:
         - containerPort: {{ .Values.api_port }}
+      imagePullSecrets:
+      - name: regcred
 
 ---
 
