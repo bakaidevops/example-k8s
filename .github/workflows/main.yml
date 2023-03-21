@@ -50,7 +50,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Update kubeconfig 
-        run: aws eks update-kubeconfig --name example-k8s --region us-east-1
+        run: aws eks update-kubeconfig --name example-k8s-2 --region us-east-1
 
       - name: Upgrade app with new features
         run: |
