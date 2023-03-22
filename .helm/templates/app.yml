@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.app_name }}
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.app_replica }}
   selector:
@@ -24,6 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.app_service_name }}
+  namespace: {{ .Values.namespace }}
 spec:
   ports:
   - port: {{ .Values.app_service_port }}

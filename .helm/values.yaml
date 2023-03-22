@@ -1,3 +1,10 @@
+namespace: prod
+
+# ----- Secret Name --------------
+
+secretName: docker-secret
+
+
 # ------ APP FrotEnd Deployment Start --------
 app_name: app
 app_replica: 1

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.admin_name }}
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.admin_replica }}
   selector:
@@ -24,6 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.admin_service_name }}
+  namespace: {{ .Values.namespace }}
 spec:
   ports:
   - port: {{ .Values.admin_service_port }}
