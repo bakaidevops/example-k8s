@@ -50,9 +50,9 @@ jobs:
           aws-region: us-east-1
 
       - name: Update kubeconfig 
-        run: aws eks update-kubeconfig --name example-k8s-1 --region us-east-1
+        run: aws eks update-kubeconfig --name demo --region us-east-1
 
       - name: Upgrade app with new features
         run: |
-          helm upgrade prod-example-k8s .helm  --set app_container_tag=${{ env.IMAGE_TAG }}
+          helm upgrade prod .helm  --set app_container_tag=${{ env.IMAGE_TAG }}
  
