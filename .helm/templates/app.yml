@@ -8,6 +8,11 @@ spec:
   selector:
     matchLabels:
       app: {{ .Values.app_container_label }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   template:
     metadata:
       labels:
@@ -18,7 +23,17 @@ spec:
         image: "{{ .Values.app_container_image }}:{{ .Values.app_container_tag }}"
         ports:
         - containerPort: {{ .Values.app_port }}
-
+        resources:
+          requests:
+            cpu: 500m
+          limits:
+            cpu: 500m
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
 ---
 
 apiVersion: v1

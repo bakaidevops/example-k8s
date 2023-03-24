@@ -18,6 +18,11 @@ spec:
         image: "{{ .Values.landing_container_image }}:{{ .Values.landing_container_tag }}"
         ports:
         - containerPort: {{ .Values.landing_port }}
+        resources:
+          requests:
+            cpu: 500m
+          limits:
+            cpu: 500m
 
 ---
 

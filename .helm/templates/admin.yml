@@ -18,6 +18,11 @@ spec:
         image: "{{ .Values.admin_container_image }}:{{ .Values.admin_container_tag }}"
         ports:
         - containerPort: {{ .Values.admin_port }}
+        resources:
+          requests:
+            cpu: 500m
+          limits:
+            cpu: 500m
 
 ---
 

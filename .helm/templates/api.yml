@@ -18,8 +18,13 @@ spec:
         image: "{{ .Values.api_container_image }}:{{ .Values.api_container_tag }}"
         ports:
         - containerPort: {{ .Values.api_port }}
+        resources:
+          requests:
+            cpu: 500m
+          limits:
+            cpu: 500m
       imagePullSecrets:
-      - name: {{ .Values.secretName }}
+      - name: docker-secret
 
 ---
 
